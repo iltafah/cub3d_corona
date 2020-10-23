@@ -1,0 +1,3 @@
+{
+    "norminette.fileregex": "^*\\.[ch]$"
+}
