@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 23:48:50 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 13:59:24 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/28 13:50:57 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	create_screen_img(t_vals *vals)
 	int		endian;
 
 	vals->img.ptr = mlx_new_image(g_mlx_ptr, g_win_w, g_win_h);
-	vals->img.data =
-	(int*)mlx_get_data_addr(vals->img.ptr, &pix, &line, &endian);
+	if (vals->img.ptr)
+		vals->img.data =
+		(int*)mlx_get_data_addr(vals->img.ptr, &pix, &line, &endian);
+	else
+		vals->mlx.error = 4;
 }
 
 void	load_textures(t_vals *vals)
@@ -86,12 +89,12 @@ int		main(int argc, char **argv)
 		initialize_struct(&vals);
 		handel_cubfile(fd, &vals);
 		close(fd);
-		if (check_wheter_there_are_errors_or_not(&vals))
-			return (0);
 		initialize_global_variables(&vals);
 		set_plyr_position(&vals);
 		set_sprite_position(&vals);
 		load_textures(&vals);
+		if (check_whether_there_are_errors_or_not(&vals))
+			return (0);
 		handel_hook(&vals, screen_shot);
 	}
 	else

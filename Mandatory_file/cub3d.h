@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:05:51 by iltafah           #+#    #+#             */
-/*   Updated: 2020/06/23 15:35:27 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/28 12:59:03 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct		s_mlx
 {
 	void			*ptr;
 	void			*win_ptr;
+	int				error;
 }					t_mlx;
 
 typedef	struct		s_plyr
@@ -193,7 +194,7 @@ void				initialize_keys(t_vals *vals);
 void				free_ptrs_to_str(char ***array);
 int					check_option(char *str, int fd, int *screen_shot);
 void				check_arguments(int	argc);
-int					check_wheter_there_are_errors_or_not(t_vals *vals);
+int					check_whether_there_are_errors_or_not(t_vals *vals);
 void				load_north_tex(t_vals *v, int b, int size, int endi);
 void				load_south_tex(t_vals *v, int b, int size, int endi);
 void				load_east_tex(t_vals *v, int b, int size, int endi);

@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:50:15 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/26 10:50:17 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/28 13:28:46 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		update(t_vals *vals)
 {
 	create_screen_img(vals);
+	if (vals->mlx.error)
+		return (0);
 	draw_cell(vals);
 	draw_floor(vals);
 	draw_walls(vals);
@@ -30,6 +32,8 @@ int		update(t_vals *vals)
 int		take_screen_shot(t_vals *vals)
 {
 	create_screen_img(vals);
+	if (vals->mlx.error)
+		return (0);
 	draw_cell(vals);
 	draw_floor(vals);
 	draw_walls(vals);
@@ -58,6 +62,9 @@ int		exit_function(t_vals *vals)
 	exit(0);
 	mlx_destroy_window(vals->mlx.ptr, vals->mlx.win_ptr);
 	free_ptrs_to_str(&vals->cubfile.world_map);
+	i = 1;
+	while (++i <= 6)
+			free_str((char**)which_adresse(i, vals));
 	return (0);
 }
 

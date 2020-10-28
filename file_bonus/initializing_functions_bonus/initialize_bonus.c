@@ -6,11 +6,11 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 00:20:04 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 13:58:50 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/28 13:20:57 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d_bonus.h"
+#include "cub3d_bonus.h"
 
 void	initialize_cubfile(t_vals *vals)
 {
@@ -33,6 +33,7 @@ void	initialize_mlx(t_vals *vals)
 {
 	vals->mlx.ptr = 0;
 	vals->mlx.win_ptr = 0;
+	vals->mlx.error = 0;
 }
 
 void	initialize_cam(t_vals *vals)
@@ -45,10 +46,21 @@ void	initialize_cam(t_vals *vals)
 void	initialize_global_variables(t_vals *vals)
 {
 	g_win_h = vals->cubfile.screen_height;
+	if (g_win_h > 1440)
+		g_win_h = 1440;
 	g_win_w = vals->cubfile.screen_width;
+	if (g_win_w > 2560)
+		g_win_w = 2560;
 	g_map = vals->cubfile.world_map;
 	g_mlx_ptr = mlx_init();
-	g_mlx_win = mlx_new_window(g_mlx_ptr, g_win_w, g_win_h, "noize");
+	if (g_mlx_ptr)
+	{
+		g_mlx_win = mlx_new_window(g_mlx_ptr, g_win_w, g_win_h, "noize");
+		if (g_mlx_win == NULL)
+			vals->mlx.error = 2;
+	}
+	else
+		vals->mlx.error = 1;
 }
 
 void	initialize_struct(t_vals *vals)

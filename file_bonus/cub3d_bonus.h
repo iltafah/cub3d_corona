@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:05:51 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 14:09:22 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/28 13:08:39 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct		s_mlx
 {
 	void			*ptr;
 	void			*win_ptr;
+	int				error;
 }					t_mlx;
 
 typedef	struct		s_plyr
