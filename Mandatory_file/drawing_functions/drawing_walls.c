@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 10:43:38 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/23 10:43:40 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/29 13:31:06 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ void	store_data(t_vals *vals, int x_screen)
 
 	texture_calculation(vals, &y_start, &y_end);
 	wall_data = vals->img.loaded_tex[vals->img.tex_index];
-	while (y_start < y_end)
+	while (y_start <= y_end)
 	{
 		vals->img.y = (int)vals->img.texpos &
 		(vals->img.tex_height[vals->img.tex_index] - 1);
 		vals->img.texpos += vals->img.step;
-		color = wall_data[vals->img.tex_height[vals->img.tex_index]
+		color = wall_data[vals->img.tex_width[vals->img.tex_index]
 		* vals->img.y + vals->img.x];
 		vals->img.data[g_win_w * y_start + x_screen] = color;
 		y_start++;

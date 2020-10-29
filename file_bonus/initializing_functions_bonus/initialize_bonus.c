@@ -6,11 +6,11 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 00:20:04 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/28 13:20:57 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/29 13:39:24 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "../cub3d_bonus.h"
 
 void	initialize_cubfile(t_vals *vals)
 {

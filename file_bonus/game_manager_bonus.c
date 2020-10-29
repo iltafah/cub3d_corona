@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:50:15 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/28 13:51:18 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/29 13:36:15 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		exit_function(t_vals *vals)
 	free_ptrs_to_str(&vals->cubfile.world_map);
 	i = 1;
 	while (++i <= 6)
-			free_str((char**)which_adresse(i, vals));
+		free_str((char**)which_adresse(i, vals));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:17:04 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/23 11:17:05 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/29 12:51:53 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	texture_calculation(t_vals *vals, int *y_start, int *y_end)
 	double	x_ray_dir;
 	double	y_ray_dir;
 
-	line_height = vals->img.line_height;
 	x_ray_dir = vals->ray.x_dir;
 	y_ray_dir = vals->ray.y_dir;
 	calculate_x_wall_ray_hit(vals, &wall_x_hit);
@@ -65,6 +64,7 @@ void	texture_calculation(t_vals *vals, int *y_start, int *y_end)
 	vals->img.x =
 	(int)(wall_x_hit * (double)(vals->img.tex_width[vals->img.tex_index]));
 	calculate_line_height(vals, y_start, y_end);
+	line_height = vals->img.line_height;
 	vals->img.step =
 	1.0 * vals->img.tex_height[vals->img.tex_index] / line_height;
 	vals->img.texpos = *y_start - g_win_h / 2 + line_height / 2;
