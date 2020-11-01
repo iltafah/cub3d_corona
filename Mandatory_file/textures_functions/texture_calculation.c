@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:17:04 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/29 12:51:53 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 11:46:05 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	which_tex_index(t_vals *vals)
 {
 	if (vals->ray.hit_side == 0 && vals->ray.x_dir > 0)
 	{
-		vals->img.tex_index = 0;
+		vals->img.tex_index = 1;
 		vals->img.x = vals->img.tex_width[0] - vals->img.x - 1;
 	}
 	if (vals->ray.hit_side == 1 && vals->ray.y_dir < 0)
 	{
-		vals->img.tex_index = 1;
+		vals->img.tex_index = 3;
 		vals->img.x = vals->img.tex_width[1] - vals->img.x - 1;
 	}
 	if (vals->ray.hit_side == 0 && vals->ray.x_dir < 0)
-		vals->img.tex_index = 2;
+		vals->img.tex_index = 0;
 	if (vals->ray.hit_side == 1 && vals->ray.y_dir > 0)
-		vals->img.tex_index = 3;
+		vals->img.tex_index = 2;
 }
 
 void	calculate_line_height(t_vals *vals, int *y_start, int *y_end)

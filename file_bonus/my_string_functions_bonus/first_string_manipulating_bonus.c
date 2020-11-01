@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 07:58:56 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 13:58:58 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/30 09:12:28 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,18 @@ int		line_is_space(char *line)
 		line++;
 	}
 	return (1);
+}
+
+int		count_line(char *line, char c)
+{
+	int		count;
+
+	count = 0;
+	while (*line)
+	{
+		if (*line == c)
+			count++;
+		line++;
+	}
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 08:04:22 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 13:59:08 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 14:17:46 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ void		check_paths(t_vals *vals, char **ptr)
 	if (fd == -1)
 		handel_file_error(8, vals);
 	close(fd);
+}
+
+int			check_errors(t_vals *vals, int num, char **line)
+{
+	free_str(line);
+	if (num == 0 || vals->cubfile.error == 1)
+	{
+		handel_file_error(4, vals);
+		return (0);
+	}
+	return (1);
 }

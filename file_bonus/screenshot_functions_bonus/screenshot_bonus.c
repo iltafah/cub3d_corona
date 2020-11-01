@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 09:52:50 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 13:59:12 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 09:15:17 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	copy_data_to_header(t_vals *vals, unsigned char *header)
 
 void	store_pixels_to_buffer(t_vals *vals, unsigned char *buf)
 {
-	unsigned int row;
-	unsigned int col;
-	unsigned int x;
-	unsigned int y;
+	int				row;
+	unsigned int	col;
+	unsigned int	x;
+	unsigned int	y;
 
 	row = vals->inf_header.img_height - 1;
 	x = 0;
@@ -63,12 +63,12 @@ void	store_pixels_to_buffer(t_vals *vals, unsigned char *buf)
 		col = 0;
 		while (col < vals->inf_header.img_width)
 		{
-			vals->tmp.red = (vals->img.data[x * g_win_w + y] >> 16) & 0xFF;
-			vals->tmp.green = (vals->img.data[x * g_win_w + y] >> 8) & 0xFF;
-			vals->tmp.blue = vals->img.data[x * g_win_w + y] & 0xFF;
-			buf[row * vals->inf_header.w_byte + col * 3 + 0] = vals->tmp.blue;
-			buf[row * vals->inf_header.w_byte + col * 3 + 1] = vals->tmp.green;
-			buf[row * vals->inf_header.w_byte + col * 3 + 2] = vals->tmp.red;
+			vals->img.red = (vals->img.data[x * g_win_w + y] >> 16) & 0xFF;
+			vals->img.green = (vals->img.data[x * g_win_w + y] >> 8) & 0xFF;
+			vals->img.blue = vals->img.data[x * g_win_w + y] & 0xFF;
+			buf[row * vals->inf_header.w_byte + col * 3 + 0] = vals->img.blue;
+			buf[row * vals->inf_header.w_byte + col * 3 + 1] = vals->img.green;
+			buf[row * vals->inf_header.w_byte + col * 3 + 2] = vals->img.red;
 			col++;
 			y++;
 		}
@@ -88,7 +88,7 @@ void	screen_it(t_vals *vals)
 	copy_data_to_header(vals, header);
 	buf = malloc(vals->inf_header.img_size);
 	store_pixels_to_buffer(vals, buf);
-	fd = open("./screen.bmp", O_CREAT | O_RDWR);
+	fd = open("./screen.bmp", O_CREAT | O_RDWR, 0666);
 	write(fd, header, 54);
 	write(fd, buf, vals->inf_header.img_size);
 	close(fd);

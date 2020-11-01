@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:05:51 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/29 13:40:22 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 14:11:56 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ typedef	struct		s_img
 	int				height;
 	double			texpos;
 	double			step;
+	int				red;
+	int				green;
+	int				blue;
 }					t_img;
 
 typedef	struct		s_sprite
@@ -140,13 +143,6 @@ typedef	struct		s_inf_header
 	int				w_byte;
 }					t_inf_header;
 
-typedef	struct		s_tmp
-{
-	int				red;
-	int				green;
-	int				blue;
-}					t_tmp;
-
 typedef	struct		s_vals
 {
 	t_cubfile		cubfile;
@@ -157,71 +153,77 @@ typedef	struct		s_vals
 	t_keys			keys;
 	t_img			img;
 	t_sprite		sprite;
-	t_tmp			tmp;
 	t_file_header	file_header;
 	t_inf_header	inf_header;
 }					t_vals;
 
-void				ft_putstr(char *str);
-void				handel_cubfile(int fd, t_vals *vals);
-int					is_digit(char d);
-int					my_atoi(char **str);
-int					my_strcmp(char *s1, char *s2, int n);
-int					is_space(char c);
-void				handel_repeat(char *line, t_vals *vals);
-char				*key_words(int n);
-void				**which_adresse(int value, t_vals *vals);
-int					line_is_space(char *line);
-int					line_is_digits(char *line);
-int					line_is_map(char *line);
-int					missing_data(char *data);
-char				**ft_split(char const *s, char c);
-void				check_map(char **world_map, t_vals *vals);
-int					my_chrcmp(char c, char *str, int len);
-void				free_str(char **str);
-void				initialize_struct(t_vals *vals);
-void				ft_double_strjoin(char **str, char *s1, char *s2);
-int					scan_line(char *line, char *set);
-void				handel_file_error(int num, t_vals *vals);
-void				map_file_to_str(char *line, t_vals *vals, int fd);
-void				set_sprite_position(t_vals *vals);
-void				screen_it(t_vals *vals);
-void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				create_screen_img(t_vals *vals);
+void				calculate_perpendicular_distance_of_wall_hit(t_vals *vals);
+void				calculate_sprite_width_height(t_vals *vals, double y_trans);
 void				check_paths(t_vals *vals, char **ptr);
+int					check_option(char *str, int fd, int *screen_shot);
+int					check_extension(t_vals *v, char *path, char *ext, int *fd);
+void				check_arguments(int	argc);
+int					check_whether_there_are_errors_or_not(t_vals *vals);
+int					check_errors(t_vals *vals, int num, char **line);
+int					count_line(char *line, char c);
+void				check_map(char **world_map, t_vals *vals);
+void				calculate_rayside(t_vals *vals);
+void				dda_loop(t_vals *vals);
+void				draw_walls(t_vals *vals);
+void				draw_cell(t_vals *vals);
+void				draw_floor(t_vals *vals);
+void				draw_sprite(t_vals *vals);
+int					exit_function(t_vals *vals);
+void				ft_putstr(char *str);
+int					ft_strcmp(const char *s1, const char *s2);
+void				free_str(char **str);
+void				free_ptrs_to_str(char ***array);
+char				**ft_split(char const *s, char c);
+void				ft_double_strjoin(char **str, char *s1, char *s2);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				handel_cubfile(int fd, t_vals *vals);
+void				handel_repeat(char *line, t_vals *vals);
+void				handel_file_error(int num, t_vals *vals);
+int					is_digit(char d);
 void				initialize_plyr(t_vals *vals);
 void				initialize_ray(t_vals *vals);
 void				initialize_keys(t_vals *vals);
-void				free_ptrs_to_str(char ***array);
-int					check_option(char *str, int fd, int *screen_shot);
-void				check_arguments(int	argc);
-int					check_whether_there_are_errors_or_not(t_vals *vals);
+void				initialize_struct(t_vals *vals);
+int					is_space(char c);
+void				initialize_global_variables(t_vals *vals);
+void				initialize_img(t_vals *vals);
+void				initialize_sprite(t_vals *vals);
+void				initialize_file_header(t_vals *vals);
+void				initialize_inf_header(t_vals *vals);
+int					key_pressed(int key, t_vals *vals);
+int					key_released(int key, t_vals *vals);
+char				*key_words(int n);
+int					line_is_space(char *line);
+int					line_is_digits(char *line);
+int					line_is_map(char *line);
 void				load_north_tex(t_vals *v, int b, int size, int endi);
 void				load_south_tex(t_vals *v, int b, int size, int endi);
 void				load_east_tex(t_vals *v, int b, int size, int endi);
 void				load_west_tex(t_vals *v, int b, int size, int endi);
 void				load_sprite_tex(t_vals *v, int b, int size, int endi);
-void				initialize_global_variables(t_vals *vals);
-void				draw_walls(t_vals *vals);
-void				draw_cell(t_vals *vals);
-void				draw_floor(t_vals *vals);
-void				draw_sprite(t_vals *vals);
+int					my_atoi(char **str);
+int					my_strcmp(char *s1, char *s2, int n);
+void				**which_adresse(int value, t_vals *vals);
+int					missing_data(char *data);
+int					my_chrcmp(char c, char *str, int len);
+void				map_file_to_str(char *line, t_vals *vals, int fd);
 void				move_plyr(t_vals *vals);
 void				move_forward(t_vals *vals, double *xdir, double *ydir);
 void				move_backward(t_vals *vals, double *xdir, double *ydir);
-int					key_pressed(int key, t_vals *vals);
-int					key_released(int key, t_vals *vals);
-int					update(t_vals *vals);
-int					take_screen_shot(t_vals *vals);
-int					exit_function(t_vals *vals);
-int					exit_function2(t_vals *vals);
-void				texture_calculation(t_vals *vals, int *y_start, int *y_end);
+int					scan_line(char *line, char *set);
+void				set_sprite_position(t_vals *vals);
 void				set_plyr_position(t_vals *vals);
-int					ft_strcmp(const char *s1, const char *s2);
-void				calculate_rayside(t_vals *vals);
-void				dda_loop(t_vals *vals);
-void				calculate_perpendicular_distance_of_wall_hit(t_vals *vals);
-void				calculate_sprite_width_height(t_vals *vals, double y_trans);
+void				screen_it(t_vals *vals);
+void				skip_line(char **line, char *set);
 void				store_sprite_data(t_vals *vals, double y_trans);
 void				store_data(t_vals *vals, int x_screen);
-void				create_screen_img(t_vals *vals);
+int					take_screen_shot(t_vals *vals);
+void				texture_calculation(t_vals *vals, int *y_start, int *y_end);
+int					update(t_vals *vals);
 #endif

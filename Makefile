@@ -6,7 +6,7 @@
 #    By: iltafah <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 12:39:16 by iltafah           #+#    #+#              #
-#    Updated: 2020/10/27 14:30:37 by iltafah          ###   ########.fr        #
+#    Updated: 2020/10/30 12:05:20 by iltafah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = ./Mandatory_file/GNL/get_next_line.c \
 ./Mandatory_file/drawing_functions/drawing_walls.c \
 ./Mandatory_file/initializing_functions/initialize.c \
 ./Mandatory_file/initializing_functions/second_initialize.c \
+./Mandatory_file/initializing_functions/third_initialize.c \
 ./Mandatory_file/initializing_functions/set_positions.c \
 ./Mandatory_file/movement_functions/movement_functions_1.c \
 ./Mandatory_file/movement_functions/movement_functions_2.c \
@@ -46,6 +47,7 @@ B_SRC = ./file_bonus/GNL_bonus/get_next_line_bonus.c \
 ./file_bonus/drawing_functions_bonus/drawing_walls_bonus.c \
 ./file_bonus/initializing_functions_bonus/initialize_bonus.c \
 ./file_bonus/initializing_functions_bonus/second_initialize_bonus.c \
+./file_bonus/initializing_functions_bonus/third_initialize_bonus.c \
 ./file_bonus/initializing_functions_bonus/set_positions_bonus.c \
 ./file_bonus/movement_functions_bonus/movement_functions_1_bonus.c \
 ./file_bonus/movement_functions_bonus/movement_functions_2_bonus.c \

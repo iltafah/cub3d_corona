@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 23:48:50 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/28 13:50:57 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 11:20:57 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,31 @@ void	load_textures(t_vals *vals)
 
 void	handel_hook(t_vals *vals, int screen_shot)
 {
-	if (screen_shot)
-		take_screen_shot(vals);
-	else
+	if (!check_whether_there_are_errors_or_not(vals))
 	{
-		mlx_hook(g_mlx_win, 2, (1L << 0), key_pressed, vals);
-		mlx_hook(g_mlx_win, 3, (1L << 1), key_released, vals);
-		mlx_loop_hook(g_mlx_ptr, update, vals);
-		mlx_hook(g_mlx_win, 17, 0, exit_function, vals);
-		mlx_loop(g_mlx_ptr);
+		if (screen_shot)
+			take_screen_shot(vals);
+		else
+		{
+			mlx_hook(g_mlx_win, 2, (1L << 0), key_pressed, vals);
+			mlx_hook(g_mlx_win, 3, (1L << 1), key_released, vals);
+			mlx_loop_hook(g_mlx_ptr, update, vals);
+			mlx_hook(g_mlx_win, 17, 0, exit_function, vals);
+			mlx_loop(g_mlx_ptr);
+		}
 	}
 }
 
-int		open_cub_file(char *str, int *fd)
+int		open_cub_file(t_vals *vals, char *str, int *fd)
 {
 	*fd = open(str, O_RDONLY);
 	if (*fd == -1)
 	{
 		ft_putstr("Error\nNo such file\n");
 		close(*fd);
+		return *fd;
 	}
-	return (*fd);
+	return (check_extension(vals, str, "cub", fd));
 }
 
 int		main(int argc, char **argv)
@@ -82,19 +86,19 @@ int		main(int argc, char **argv)
 	if (argc > 1 && argc <= 3)
 	{
 		screen_shot = 0;
-		if ((open_cub_file(argv[1], &fd)) == -1)
+		if ((open_cub_file(&vals ,argv[1], &fd)) == -1)
 			return (0);
 		if (argc == 3 && !check_option(argv[2], fd, &screen_shot))
 			return (0);
 		initialize_struct(&vals);
 		handel_cubfile(fd, &vals);
 		close(fd);
+		if (check_whether_there_are_errors_or_not(&vals))
+			return (0);
 		initialize_global_variables(&vals);
 		set_plyr_position(&vals);
 		set_sprite_position(&vals);
 		load_textures(&vals);
-		if (check_whether_there_are_errors_or_not(&vals))
-			return (0);
 		handel_hook(&vals, screen_shot);
 	}
 	else

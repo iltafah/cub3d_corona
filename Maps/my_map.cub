@@ -1,8 +1,8 @@
 R 1020 580
-NO ./images/bluestone.xpm
-SO ./images/eagle.xpm
-WE ./images/greystone.xpm
-EA ./images/redbrick.xpm
+NO ./images/eagle.xpm
+SO ./images/redbrick.xpm
+WE ./images/bluestone.xpm
+EA ./images/greystone.xpm
 
 S ./images/barrel.xpm
 F 128,128,128

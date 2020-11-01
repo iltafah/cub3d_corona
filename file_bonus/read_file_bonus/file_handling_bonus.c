@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 08:02:11 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/27 13:59:03 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 14:10:09 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,19 @@ void	color_fill(char *line, int value, t_vals *vals)
 		line++;
 	while (is_space(*line))
 		line++;
-	if (!scan_line(line, " \t\v\n\f\r,0123456789"))
+	if (!scan_line(line, " \t\v\n\f\r,0123456789")
+	|| count_line(line, ',') != 2)
 	{
 		handel_file_error(3, vals);
 		return ;
 	}
 	r = my_atoi(&line);
-	line++;
+	skip_line(&line, " \t\v\n\f\r,");
 	g = my_atoi(&line);
-	line++;
+	skip_line(&line, " \t\v\n\f\r,");
 	b = my_atoi(&line);
 	*ptr = (r << 16) + (g << 8) + b;
-	if (!line_is_space(line) || r > 256 || g > 256 || b > 256)
+	if (!line_is_space(line) || r > 255 || g > 255 || b > 255)
 		handel_file_error(3, vals);
 }
 
@@ -126,11 +127,9 @@ void	handel_cubfile(int fd, t_vals *vals)
 			free_str(&line);
 			return ;
 		}
-		free_str(&line);
-		if (num == 0 || vals->cubfile.error == 1)
-		{
-			handel_file_error(4, vals);
+		else if (!line_is_space(line))
+			handel_file_error(0, vals);
+		if (!check_errors(vals, num, &line))
 			return ;
-		}
 	}
 }

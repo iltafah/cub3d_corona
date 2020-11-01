@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 11:43:07 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/15 11:43:16 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/10/30 10:15:31 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,22 @@ int		ft_strcmp(const char *s1, const char *s2)
 		a2++;
 	}
 	return (*a1 - *a2);
+}
+
+void	skip_line(char **line, char *set)
+{
+	int		i;
+
+	while (**line)
+	{
+		i = -1;
+		while (set[++i])
+		{
+			if (**line == set[i])
+				break ;
+		}
+		if (!set[i])
+			return ;
+		(*line)++;
+	}
 }

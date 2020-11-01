@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 00:20:04 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/29 13:39:24 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/01 11:17:36 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ void	initialize_cam(t_vals *vals)
 void	initialize_global_variables(t_vals *vals)
 {
 	g_win_h = vals->cubfile.screen_height;
-	if (g_win_h > 1440)
-		g_win_h = 1440;
 	g_win_w = vals->cubfile.screen_width;
-	if (g_win_w > 2560)
+	if (g_win_h > 1440 || g_win_w > 2560 || g_win_h < 0 || g_win_w < 0)
+	{
+		g_win_h = 1440;
 		g_win_w = 2560;
+	}
 	g_map = vals->cubfile.world_map;
 	g_mlx_ptr = mlx_init();
 	if (g_mlx_ptr)
@@ -71,4 +72,8 @@ void	initialize_struct(t_vals *vals)
 	initialize_plyr(vals);
 	initialize_ray(vals);
 	initialize_keys(vals);
+	initialize_img(vals);
+	initialize_sprite(vals);
+	initialize_file_header(vals);
+	initialize_inf_header(vals);
 }
