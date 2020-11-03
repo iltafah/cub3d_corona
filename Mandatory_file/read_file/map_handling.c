@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 07:29:07 by iltafah           #+#    #+#             */
-/*   Updated: 2020/03/15 04:29:34 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:34:07 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	map_file_to_str(char *line, t_vals *vals, int fd)
 		if ((!line_is_map(line) && is_space == 0) || is_space == -1)
 		{
 			handel_file_error(0, vals);
-			free_str(&vals->cubfile.keep);
+			free_array((void*)&vals->cubfile.keep);
 			return ;
 		}
 		if (is_space == 0)
 			ft_double_strjoin(&vals->cubfile.keep, line, "|");
-		free_str(&line);
+		free_array((void*)&line);
 	}
 	vals->cubfile.world_map = ft_split(vals->cubfile.keep, '|');
 	check_map(vals->cubfile.world_map, vals);

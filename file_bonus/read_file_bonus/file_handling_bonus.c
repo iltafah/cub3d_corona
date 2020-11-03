@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 08:02:11 by iltafah           #+#    #+#             */
-/*   Updated: 2020/11/01 14:10:09 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:34:07 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	handel_cubfile(int fd, t_vals *vals)
 				map_file_to_str(line, vals, fd);
 			else
 				handel_file_error(2, vals);
-			free_str(&line);
+			free_array((void*)&line);
 			return ;
 		}
 		else if (!line_is_space(line))

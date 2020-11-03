@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:05:56 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/30 11:55:35 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:13:55 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void	initialize_sprite(t_vals *vals)
 {
 	vals->sprite.x_pos = 0;
 	vals->sprite.y_pos = 0;
+	vals->sprite.num_of_sprites = 0;
+	vals->sprite.x_pos = 0;
+	vals->sprite.y_pos = 0;
+	vals->sprite.index = 0;
 	vals->sprite.z_wall_distance = 0;
 	vals->sprite.width = 0;
 	vals->sprite.height = 0;

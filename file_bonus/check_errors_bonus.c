@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 13:01:54 by iltafah           #+#    #+#             */
-/*   Updated: 2020/11/01 10:53:38 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:46:26 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@ int		check_whether_there_are_errors_or_not(t_vals *vals)
 		if (vals->cubfile.world_map)
 			free_ptrs_to_str(&vals->cubfile.world_map);
 		while (++i <= 6)
-			free_str((char**)which_adresse(i, vals));
+			free_array(which_adresse(i, vals));
+		if (vals->sprite.x_pos)
+			free(vals->sprite.x_pos);
+		if (vals->sprite.y_pos)
+			free(vals->sprite.y_pos);
+		if (vals->sprite.index)
+			free(vals->sprite.index);
 	}
 	if (vals->mlx.error == 1)
 		ft_putstr("Error\nfaild set up connection to the graphical system\n");

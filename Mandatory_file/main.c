@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 23:48:50 by iltafah           #+#    #+#             */
-/*   Updated: 2020/11/01 11:20:30 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:02:26 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		open_cub_file(t_vals *vals, char *str, int *fd)
 	{
 		ft_putstr("Error\nNo such file\n");
 		close(*fd);
-		return *fd;
+		return (*fd);
 	}
 	return (check_extension(vals, str, "cub", fd));
 }
@@ -86,7 +86,7 @@ int		main(int argc, char **argv)
 	if (argc > 1 && argc <= 3)
 	{
 		screen_shot = 0;
-		if ((open_cub_file(&vals ,argv[1], &fd)) == -1)
+		if ((open_cub_file(&vals, argv[1], &fd)) == -1)
 			return (0);
 		if (argc == 3 && !check_option(argv[2], fd, &screen_shot))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:50:15 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/29 13:36:15 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:44:24 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		update(t_vals *vals)
 	draw_cell(vals);
 	draw_floor(vals);
 	draw_walls(vals);
-	draw_sprite(vals);
+	draw_sprites(vals);
 	mlx_clear_window(g_mlx_ptr, g_mlx_win);
 	mlx_put_image_to_window(g_mlx_ptr, g_mlx_win, vals->img.ptr, 0, 0);
 	mlx_destroy_image(g_mlx_ptr, vals->img.ptr);
@@ -37,7 +37,7 @@ int		take_screen_shot(t_vals *vals)
 	draw_cell(vals);
 	draw_floor(vals);
 	draw_walls(vals);
-	draw_sprite(vals);
+	draw_sprites(vals);
 	screen_it(vals);
 	mlx_destroy_image(g_mlx_ptr, vals->img.ptr);
 	vals->img.ptr = NULL;
@@ -51,20 +51,19 @@ int		exit_function(t_vals *vals)
 	i = -1;
 	while (++i < 5)
 		mlx_destroy_image(g_mlx_ptr, vals->img.ptr_to_loaded_tex[i]);
-	free(vals->img.ptr_to_loaded_tex);
-	vals->img.ptr_to_loaded_tex = NULL;
-	free(vals->img.loaded_tex);
-	vals->img.loaded_tex = NULL;
-	free(vals->img.tex_width);
-	vals->img.tex_width = 0;
-	free(vals->img.tex_height);
-	vals->img.tex_height = 0;
+	free_array((void*)&vals->img.ptr_to_loaded_tex);
+	free_array((void*)&vals->img.loaded_tex);
+	free_array((void*)&vals->img.tex_width);
+	free_array((void*)&vals->img.tex_height);
+	free_array((void*)&vals->sprite.x_pos);
+	free_array((void*)&vals->sprite.y_pos);
+	free_array((void*)&vals->sprite.index);
 	exit(0);
 	mlx_destroy_window(vals->mlx.ptr, vals->mlx.win_ptr);
 	free_ptrs_to_str(&vals->cubfile.world_map);
 	i = 1;
 	while (++i <= 6)
-		free_str((char**)which_adresse(i, vals));
+		free_array(which_adresse(i, vals));
 	return (0);
 }
 

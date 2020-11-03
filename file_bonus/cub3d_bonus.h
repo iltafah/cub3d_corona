@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:05:51 by iltafah           #+#    #+#             */
-/*   Updated: 2020/11/01 14:11:56 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:43:48 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,10 @@ typedef	struct		s_img
 
 typedef	struct		s_sprite
 {
-	double			x_pos;
-	double			y_pos;
+	double			*x_pos;
+	double			*y_pos;
+	int				*index;
+	int				num_of_sprites;
 	double			*z_wall_distance;
 	int				width;
 	int				height;
@@ -173,11 +175,12 @@ void				dda_loop(t_vals *vals);
 void				draw_walls(t_vals *vals);
 void				draw_cell(t_vals *vals);
 void				draw_floor(t_vals *vals);
-void				draw_sprite(t_vals *vals);
+void				draw_sprite(t_vals *vals, int i);
+void				draw_sprites(t_vals *vals);
 int					exit_function(t_vals *vals);
 void				ft_putstr(char *str);
 int					ft_strcmp(const char *s1, const char *s2);
-void				free_str(char **str);
+void				free_array(void **array);
 void				free_ptrs_to_str(char ***array);
 char				**ft_split(char const *s, char c);
 void				ft_double_strjoin(char **str, char *s1, char *s2);

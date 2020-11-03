@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:01:40 by iltafah           #+#    #+#             */
-/*   Updated: 2020/10/23 11:01:41 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/02 14:17:35 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,44 @@ void	set_plyr_position(t_vals *vals)
 	}
 }
 
-void	set_sprite_position(t_vals *vals)
+int		count_sprites_on_the_map(void)
 {
+	int			count;
 	int			x;
 	int			y;
 
+	count = 0;
 	x = -1;
 	while (g_map[++x])
 	{
 		y = -1;
 		while (g_map[x][++y])
-		{
+			if (g_map[x][y] == '2')
+				count++;
+	}
+	return (count);
+}
+
+void	set_sprite_position(t_vals *vals)
+{
+	int			x;
+	int			y;
+	int			i;
+
+	vals->sprite.num_of_sprites = count_sprites_on_the_map();
+	vals->sprite.x_pos = malloc(sizeof(double) * vals->sprite.num_of_sprites);
+	vals->sprite.y_pos = malloc(sizeof(double) * vals->sprite.num_of_sprites);
+	vals->sprite.index = malloc(sizeof(int) * vals->sprite.num_of_sprites);
+	x = -1;
+	i = 0;
+	while (g_map[++x])
+	{
+		y = -1;
+		while (g_map[x][++y])
 			if (g_map[x][y] == '2')
 			{
-				vals->sprite.x_pos = x + 0.5;
-				vals->sprite.y_pos = y + 0.5;
-				break ;
+				vals->sprite.x_pos[i] = x + 0.5;
+				vals->sprite.y_pos[i++] = y + 0.5;
 			}
-		}
 	}
 }

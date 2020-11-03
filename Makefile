@@ -6,7 +6,7 @@
 #    By: iltafah <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 12:39:16 by iltafah           #+#    #+#              #
-#    Updated: 2020/10/30 12:05:20 by iltafah          ###   ########.fr        #
+#    Updated: 2020/11/03 09:08:46 by iltafah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = ./Mandatory_file/GNL/get_next_line.c \
 ./Mandatory_file/GNL/get_next_line_utils.c \
 ./Mandatory_file/drawing_functions/draw_cell_and_floor.c \
 ./Mandatory_file/drawing_functions/drawing_sprite.c \
+./Mandatory_file/drawing_functions/drawing_sprites.c \
 ./Mandatory_file/drawing_functions/drawing_walls.c \
 ./Mandatory_file/initializing_functions/initialize.c \
 ./Mandatory_file/initializing_functions/second_initialize.c \
@@ -44,6 +45,7 @@ B_SRC = ./file_bonus/GNL_bonus/get_next_line_bonus.c \
 ./file_bonus/GNL_bonus/get_next_line_utils_bonus.c \
 ./file_bonus/drawing_functions_bonus/draw_cell_and_floor_bonus.c \
 ./file_bonus/drawing_functions_bonus/drawing_sprite_bonus.c \
+./file_bonus/drawing_functions_bonus/drawing_sprites_bonus.c \
 ./file_bonus/drawing_functions_bonus/drawing_walls_bonus.c \
 ./file_bonus/initializing_functions_bonus/initialize_bonus.c \
 ./file_bonus/initializing_functions_bonus/second_initialize_bonus.c \

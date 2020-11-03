@@ -6,7 +6,7 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 10:58:12 by iltafah           #+#    #+#             */
-/*   Updated: 2020/11/01 14:08:58 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:01:21 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,25 @@ void			store_sprite_data(t_vals *vals, double y_trans)
 	}
 }
 
-void			draw_sprite(t_vals *vals)
+void			draw_sprite(t_vals *vals, int i)
 {
-	double		x_sprite_plyr;
-	double		y_sprite_plyr;
+	double		s_to_p_x;
+	double		s_to_p_y;
 	double		x_trans;
 	double		y_trans;
 	double		invdet;
 
-	x_sprite_plyr = vals->sprite.x_pos - vals->plyr.x_pos;
-	y_sprite_plyr = vals->sprite.y_pos - vals->plyr.y_pos;
+	s_to_p_x = vals->sprite.x_pos[vals->sprite.index[i]] - vals->plyr.x_pos;
+	s_to_p_y = vals->sprite.y_pos[vals->sprite.index[i]] - vals->plyr.y_pos;
 	invdet = 1.0 / (vals->cam.x_plane * vals->plyr.y_dir -
 	vals->plyr.x_dir * vals->cam.y_plane);
-	x_trans = (vals->plyr.y_dir * x_sprite_plyr -
-	vals->plyr.x_dir * y_sprite_plyr);
-	y_trans = (-vals->cam.y_plane * x_sprite_plyr +
-	vals->cam.x_plane * y_sprite_plyr);
+	x_trans = (vals->plyr.y_dir * s_to_p_x -
+	vals->plyr.x_dir * s_to_p_y);
+	y_trans = (-vals->cam.y_plane * s_to_p_x +
+	vals->cam.x_plane * s_to_p_y);
 	x_trans *= invdet;
 	y_trans *= invdet;
 	vals->sprite.x_screen = (int)(g_win_w / 2 * (1 + x_trans / y_trans));
 	calculate_sprite_width_height(vals, y_trans);
 	store_sprite_data(vals, y_trans);
-	free(vals->sprite.z_wall_distance);
 }

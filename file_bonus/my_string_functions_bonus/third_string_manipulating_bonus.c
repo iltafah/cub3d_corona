@@ -6,16 +6,16 @@
 /*   By: iltafah <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 11:43:07 by iltafah           #+#    #+#             */
-/*   Updated: 2020/11/01 14:23:13 by iltafah          ###   ########.fr       */
+/*   Updated: 2020/11/03 09:43:22 by iltafah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	free_str(char **str)
+void	free_array(void **array)
 {
-	free(*str);
-	*str = NULL;
+	free(*array);
+	*array = NULL;
 }
 
 void	free_ptrs_to_str(char ***array)
@@ -25,7 +25,7 @@ void	free_ptrs_to_str(char ***array)
 	i = 0;
 	while ((*array)[i])
 	{
-		free_str(&(*array)[i]);
+		free_array((void*)&(*array)[i]);
 		i++;
 	}
 	free((*array));
